@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// chapter controllers route
+Route::post('AddChapter','ChapterController@Add_Chapter');
+Route::get('ShowChapterlist','ChapterController@Show_Chapter_list');
+Route::get('DeleteChapter/{id}','ChapterController@Delete_Chapter');
+
+// topic controller route
+Route::post('AddTopic','TopicController@Add_Topic');
+Route::get('ShowTopiclist','TopicController@Show_Topic_list');
+Route::get('DeleteTopic/{id}','TopicController@Delete_Topic');
+
