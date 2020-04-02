@@ -4,9 +4,22 @@ $(function (){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     }); // csrf solution
-
     $(".yearpicker").yearpicker(); // year picker for add board
 
+
+    // add question - board list js
+    $('#addMore').on('click', function() {
+        $(".boards:last-child").clone(true).appendTo("#board_field");
+    });
+    $(document).on('click', '.remove', function() {
+        var trIndex = $(this).closest("div.boards").index();
+        if(trIndex>1) {
+            $(this).closest("div.boards").remove();
+        } else {
+            alert("Sorry!! Can't remove first input!");
+        }
+    });
+    // add question - board list js
 
     // adding question
     $("#AddQuestion").click(function() {
@@ -25,10 +38,15 @@ $(function (){
                 $("#question_option3").val() === $("#question_correct_option").val() ||
                 $("#question_option4").val() === $("#question_correct_option").val()
             ){
+                var board_list = [];            
+                $('input[name^=question_board]').each(function(){
+                    board_list.push($(this).val());
+                });
+
                 var formdata = new FormData();
                 formdata.append('topic_id',$("#question_topic").val());
                 formdata.append('question',$("#question").val());
-                formdata.append('board_id',$("#question_board").val());
+                formdata.append('board_id',board_list);
                 formdata.append('option1',$("#question_option1").val());
                 formdata.append('option2',$("#question_option2").val());
                 formdata.append('option3',$("#question_option3").val());
@@ -54,9 +72,10 @@ $(function (){
                         $("#question_tag").val("");
                         $("#question_answer_detail").val("");
                         alert(data);
-                        // show_Question();
+                        Show_Question();
                     }
                 });
+
                 // alert($("#question_topic").val()+" "+
                 // $("#question_board").val()+" "+
                 // $("#question").val()+" "+
@@ -225,6 +244,22 @@ function All_show_functions() {
     show_topics();
     // show board
     show_board();
+    // show question
+    Show_Question();
+}
+
+
+// show question
+function Show_Question(){
+    $.ajax({
+        processData:false,
+        contentType:false,
+        type:"get",
+        url:"ShowQuestion",
+        success:function(data){
+            $("#Question_table").html(data);
+        }
+    })
 }
 
 
@@ -238,7 +273,7 @@ function show_board() {
         success:function(data){
             all = JSON.parse(data);
             $("#BoardListDelete").html(all.delete);
-            // $("#board_list").html(all.board_list);
+            $("#question_board").html(all.board_list);
         }
     })
 }
@@ -255,7 +290,7 @@ function show_topics() {
             all = JSON.parse(data);
             $("#EditTopicList").html(all.edit);
             $("#DeleteTopicList").html(all.delete);
-            // $("#Topic-chapter").html(all.topic_list);
+            $("#question_topic").html(all.topic_list);
         }
     })
 }

@@ -11,10 +11,10 @@ class Question extends Model
     ];
 
     public function topic(){
-        $this->hasOne('App\Topic','id','topic_id');
+        return $this->hasOne('App\Topic','id','topic_id');
     }
 
     public function board_list(){
-        $this->hasOne('App\board_list');
+        return $this->hasOne('App\board_list','id','board_id');
     }
 }

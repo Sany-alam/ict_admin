@@ -28,9 +28,9 @@ class TopicController extends Controller
         $edit = '<button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit Topic <i class="fa fa-arrow-down"></i></button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
         for ($i=0; $i < sizeof($query); $i++) {
-            $delete .='<a class="dropdown-item" onclick="Delete_Topic('.$query[$i]->id.')" href="javascript:void(0)"><i class="fa fa-trash"></i> '.$query[$i]->topic_name.'</a>';
+            $delete .='<a class="dropdown-item" onclick="Delete_Topic('.$query[$i]->id.')" href="javascript:void(0)"><i class="fa fa-trash"></i> '.$query[$i]->topic_name.' - '.$query[$i]->chapter->chapter_name.'</a>';
             $edit .='<a class="dropdown-item" onclick="Edit_Topic('.$query[$i]->id.')" href="javascript:void(0)"><i class="fa fa-edit"></i> '.$query[$i]->topic_name.'</a>';
-            $topic_list .='<option value="'.$query[$i]->id.'" class="">'.$query[$i]->topic_name.'</option>';
+            $topic_list .='<option value="'.$query[$i]->id.'" class="">'.$query[$i]->topic_name.' - '.$query[$i]->chapter->chapter_name.'</option>';
         }
         $delete .='</div>';
         $edit .='</div>';

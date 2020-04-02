@@ -26,11 +26,12 @@ class BoardListController extends Controller
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       ';
         for ($i=0; $i < sizeof($query); $i++) {
-            $delete .='<a class="dropdown-item" onclick="Delete_Board('.$query[$i]->id.')" href="javascript:void(0)"><i class="fa fa-trash"></i> '.$query[$i]->board_name.'</a>';
-            $board_list .= '<option value="'.$query[$i]->id.'" class="">'.$query[$i]->board_name.'</option>';
+            $delete .='<a class="dropdown-item" onclick="Delete_Board('.$query[$i]->id.')" href="javascript:void(0)"><i class="fa fa-trash"></i> '.$query[$i]->board_name.' '.$query[$i]->year.'</a>';
+            $board_list .= '<option value="'.$query[$i]->id.'" class="">'.$query[$i]->board_name.' '.$query[$i]->year.'</option>';
         }
         $delete .='</div>';
         $array['delete'] = $delete;
+        $array['board_list'] = $board_list;
         $array['board_list'] = $board_list;
 
         return json_encode($array);

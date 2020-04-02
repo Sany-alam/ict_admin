@@ -13,15 +13,24 @@
     {{-- required css --}}
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app.min.css">
 
+    <!-- custom css -->
+    <style type="text/css">
+        select#question_board{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 1px;
+            text-overflow: '';
+        }
+    </style>
+    <!-- custom css -->
+
     {{-- required js --}}
     <script src="{{ asset('assets') }}/js/vendors.min.js"></script>
     <script src="{{ asset('assets') }}/js/app.min.js"></script>
 
     {{-- page js --}}<!-- page js -->
     <script src="{{ asset('assets') }}/vendors/yearpicker/yearpicker.js"></script>
-    <script src="{{ asset('assets') }}/vendors/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('assets') }}/vendors/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="{{ asset('assets') }}/vendors/datatables/datatables.js"></script>
+
 
     <title>ICT - Add Questions</title>
 </head>
@@ -89,7 +98,7 @@
                     </select>
                 </div>
                 <div class="col">
-                    <input type="text" id="board_year" class="yearpicker form-control" placeholder="Select Year">
+                    <input type="text" id="board_year" class="yearpicker form-control" placeholder="Select Year" autocomplete="off">
                 </div>
                 <div class="col">
                     <button class="btn btn-sm btn-primary" id="AddBoard">Add board</button>
@@ -107,19 +116,14 @@
             <div class="form-row mb-3">
                 <div class="col">
                     <label for="question_topic">Select Topic :</label>
-                    <select id="question_topic" class="form-control">
-                        <option value="1">topic 1</option>
-                        <option value="2">topic 2</option>
-                        <option value="2">topic 3</option>
-                    </select>
+                    <select id="question_topic" class="form-control"></select>
                 </div>
-                <div class="col">
-                    <label for="question_board">Select Board : (Optional)</label>
-                    <select id="question_board" class="form-control">
-                        <option value="">chittagong 2020</option>
-                        <option value="">dhaka 2020</option>
-                        <option value="">barisal 2020</option>
-                    </select>
+                <div class="col" id="board_field">
+                    <label for="question_board">Select Board : (Optional) <a id="addMore" href="javascript:void(0)"><i class="suffix-icon anticon anticon-plus"></i></a></label>
+                    <div class="input-affix boards">
+                        <select name="question_board[]" id="question_board" class="form-control"></select>
+                        <a href="javascript:void(0)"><i class="suffix-icon anticon anticon-delete remove"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="form-row mb-3">
@@ -168,39 +172,8 @@
         </div>
 
         {{-- question table --}} <hr>
-        <div class="card p-4">
-            <table id="data-table" class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="card p-4" id="Question_table">
+
         </div>
     </div>
 </div>
