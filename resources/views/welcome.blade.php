@@ -8,6 +8,7 @@
 
     {{-- page css --}}
     <link rel="stylesheet" href="{{ asset('assets') }}\vendors\datatables\dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}\vendors\yearpicker\yearpicker.css">
 
     {{-- required css --}}
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app.min.css">
@@ -17,6 +18,7 @@
     <script src="{{ asset('assets') }}/js/app.min.js"></script>
 
     {{-- page js --}}<!-- page js -->
+    <script src="{{ asset('assets') }}/vendors/yearpicker/yearpicker.js"></script>
     <script src="{{ asset('assets') }}/vendors/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/datatables/dataTables.bootstrap.min.js"></script>
     <script src="{{ asset('assets') }}/vendors/datatables/datatables.js"></script>
@@ -32,16 +34,21 @@
                     <input type="text" class="form-control" placeholder="Enter Chapter name" id="ChapterName">
                 </div>
                 <div class="col">
-                    <button class="btn btn-primary" id="AddChapter">Add chapter</button>
+                    <button class="btn btn-sm btn-primary" id="AddChapter">Add chapter</button>
                 </div>
                 <div class="col">
-                    <div class="dropdown" id="ChapterList">
+                    <div class="dropdown" id="EditChapterList">
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="dropdown" id="DeleteChapterList">
 
                     </div>
                 </div>
             </div>
         </div>
-        {{-- add chapters --}}
+        {{-- add Topics --}} <hr>
         <div class="card">
             <div class="row m-3">
                 <div class="col">
@@ -51,18 +58,116 @@
                     <input type="text" class="form-control" placeholder="Enter topic" id="Topic-name">
                 </div>
                 <div class="col">
-                    <button class="btn btn-primary" id="AddTopics">Add topic</button>
+                    <button class="btn btn-sm btn-primary" id="AddTopics">Add topic</button>
                 </div>
                 <div class="col">
-                    <div class="dropdown" id="TopicList"></div>
+                    <div class="dropdown" id="EditTopicList"></div>
+                </div>
+                <div class="col">
+                    <div class="dropdown" id="DeleteTopicList"></div>
                 </div>
             </div>
         </div>
-        {{-- add question --}}
-        <div class="card"></div>
-
+        {{-- add board --}} <hr>
+        <div class="card">
+            <div class="row m-3">
+                <div class="col">
+                    <select id="board_name" class="form-control">
+                        <option value="" selected="">Select Board</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Comilla">Comilla</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Dinajpur">Dinajpur</option>
+                        <option value="Jessore">Jessore</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Madrasah">Madrasah</option>
+                        <option value="Technical">Technical</option>
+                        <option value="DIBS(Dhaka)">DIBS(Dhaka)</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="text" id="board_year" class="yearpicker form-control" placeholder="Select Year">
+                </div>
+                <div class="col">
+                    <button class="btn btn-sm btn-primary" id="AddBoard">Add board</button>
+                </div>
+                <div class="col">
+                    <div class="dropdown" id="BoardListDelete"></div>
+                </div>
+                <div class="col">
+                    <div class="dropdown" id="BoardListEdit"></div>
+                </div>
+            </div>
         </div>
-        {{-- question table --}}
+        {{-- add question --}} <hr>
+        <div class="card p-4">
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="question_topic">Select Topic :</label>
+                    <select id="question_topic" class="form-control">
+                        <option value="1">topic 1</option>
+                        <option value="2">topic 2</option>
+                        <option value="2">topic 3</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="question_board">Select Board : (Optional)</label>
+                    <select id="question_board" class="form-control">
+                        <option value="">chittagong 2020</option>
+                        <option value="">dhaka 2020</option>
+                        <option value="">barisal 2020</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="question">Enter question :</label>
+                    <textarea id="question" class="form-control" placeholder="Question here"></textarea>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="question_option1">Enter Option 1 :</label>
+                    <input id="question_option1" type="text" class="form-control" placeholder="Option 1">
+                </div>
+                <div class="col">
+                    <label for="question_option2">Enter Option 2 :</label>
+                    <input id="question_option2" type="text" class="form-control" placeholder="Option 2">
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="question_option3">Enter Option 3 :</label>
+                    <input id="question_option3" type="text" class="form-control" placeholder="Option 3">
+                </div>
+                <div class="col">
+                    <label for="question_option4">Enter Option 4 :</label>
+                    <input id="question_option4" type="text" class="form-control" placeholder="Option 4">
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="question_correct_option">Enter Correct Option :</label>
+                    <input id="question_correct_option" type="text" class="form-control" placeholder="Copy and paste the correct option">
+                </div>
+                <div class="col">
+                    <label for="question_tag">Enter Tag : (Optional)</label>
+                    <input id="question_tag" type="text" class="form-control" placeholder="Relatable Tag">
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="question_answer_detail">Enter Detail : (Optional)</label>
+                    <textarea id="question_answer_detail" class="form-control" placeholder="Summery"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" id="AddQuestion">Submit</button>
+        </div>
+
+        {{-- question table --}} <hr>
         <div class="card p-4">
             <table id="data-table" class="table">
                 <thead>
@@ -98,6 +203,63 @@
             </table>
         </div>
     </div>
+</div>
+    {{-- modals start here --}}
+    {{-- chapter name editation modal --}}
+    <div id="EditChapterNameModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Chapter Name</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="HiddenEditChapterId" type="hidden" class="d-none">
+                        <label for="EditChapterName">Chapter Name</label>
+                        <input placeholder="Enter Chapter name" id="EditChapterName" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default m-r-10" data-dismiss="modal">Close</button>
+                    <button id="UpdateChapterName" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- chapter name editation modal --}}
+    {{-- Topic editation modal --}}
+    <div id="EditTopicModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Topic Name or change Chapter</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="HiddenEditTopicId" type="hidden" class="">
+                    <div class="form-group">
+                        <label for="EditTopicChapter">Select Chapter :</label>
+                        <select id="EditTopicChapter" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="EditTopicName">Topic Name :</label>
+                        <input placeholder="Enter Topic name" id="EditTopicName" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default m-r-10" data-dismiss="modal">Close</button>
+                    <button id="UpdateTopic" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Topic editation modal --}}
+    {{-- modal ends here --}}
 
     {{-- custom js --}}
     <script src="{{ asset('assets') }}/js/custom.js"></script>
