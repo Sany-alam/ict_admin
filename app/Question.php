@@ -10,7 +10,11 @@ class Question extends Model
         'topic_id','question','board_id','option1','option2','option3','option4','correct_option','tag','details'
     ];
 
-    // public function board_list(){
-    //     $this->hasOne('App\board_list');
-    // }
+    public function topic(){
+        $this->hasOne('App\Topic','id','topic_id');
+    }
+
+    public function board_list(){
+        $this->hasOne('App\board_list');
+    }
 }

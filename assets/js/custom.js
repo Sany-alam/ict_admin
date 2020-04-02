@@ -24,63 +24,53 @@ $(function (){
                 $("#question_option2").val() === $("#question_correct_option").val() ||
                 $("#question_option3").val() === $("#question_correct_option").val() ||
                 $("#question_option4").val() === $("#question_correct_option").val()
-            ) {
-                alert($("#question_topic").val()+" "+
-                $("#question_board").val()+" "+
-                $("#question").val()+" "+
-                $("#question_option1").val()+" "+
-                $("#question_option2").val()+" "+
-                $("#question_option3").val()+" "+
-                $("#question_option4").val()+" "+
-                $("#question_correct_option").val()+" "+
-                $("#question_tag").val()+" "+
-                $("#question_answer_detail").val());
+            ){
+                var formdata = new FormData();
+                formdata.append('topic_id',$("#question_topic").val());
+                formdata.append('question',$("#question").val());
+                formdata.append('board_id',$("#question_board").val());
+                formdata.append('option1',$("#question_option1").val());
+                formdata.append('option2',$("#question_option2").val());
+                formdata.append('option3',$("#question_option3").val());
+                formdata.append('option4',$("#question_option4").val());
+                formdata.append('correct_option',$("#question_correct_option").val());
+                formdata.append('tag',$("#question_tag").val());
+                formdata.append('details',$("#question_answer_detail").val());
+                $.ajax({
+                    processData:false,
+                    contentType:false,
+                    data:formdata,
+                    type:"post",
+                    url:"AddQuestion",
+                    success:function(data) {
+                        $("#question_topic").val("");
+                        $("#question_board").val("");
+                        $("#question").val("");
+                        $("#question_option1").val("");
+                        $("#question_option2").val("");
+                        $("#question_option3").val("");
+                        $("#question_option4").val("");
+                        $("#question_correct_option").val("");
+                        $("#question_tag").val("");
+                        $("#question_answer_detail").val("");
+                        alert(data);
+                        // show_Question();
+                    }
+                });
+                // alert($("#question_topic").val()+" "+
+                // $("#question_board").val()+" "+
+                // $("#question").val()+" "+
+                // $("#question_option1").val()+" "+
+                // $("#question_option2").val()+" "+
+                // $("#question_option3").val()+" "+
+                // $("#question_option4").val()+" "+
+                // $("#question_correct_option").val()+" "+
+                // $("#question_tag").val()+" "+
+                // $("#question_answer_detail").val());
             }
             else{
                 alert("correct option missmathed");
             }
-        // alert($("#question_topic").val()+" "+
-        // $("#question_board").val()+" "+
-        // $("#question").val()+" "+
-        // $("#question_option1").val()+" "+
-        // $("#question_option2").val()+" "+
-        // $("#question_option3").val()+" "+
-        // $("#question_option4").val()+" "+
-        // $("#question_correct_option").val()+" "+
-        // $("#question_tag").val()+" "+
-        // $("#question_answer_detail").val());
-        // var formdata = new FormData();
-        //     formdata.append('topic_id',$("#question_topic").val());
-        //     formdata.append('question',$("#question").val());
-        //     formdata.append('board_id',$("#question_board").val());
-        //     formdata.append('option1',$("#question_option1").val());
-        //     formdata.append('option2',$("#question_option2").val());
-        //     formdata.append('option3',$("#question_option3").val());
-        //     formdata.append('option4',$("#question_option4").val());
-        //     formdata.append('correct_option',$("#question_correct_option").val());
-        //     formdata.append('tag',$("#question_tag").val());
-        //     formdata.append('details',$("#question_answer_detail").val());
-        //     $.ajax({
-        //         processData:false,
-        //         contentType:false,
-        //         data:formdata,
-        //         type:"post",
-        //         url:"AddQuestion",
-        //         success:function(data) {
-        //             $("#question_topic").val("");
-        //             $("#question_board").val("");
-        //             $("#question").val("");
-        //             $("#question_option1").val("");
-        //             $("#question_option2").val("");
-        //             $("#question_option3").val("");
-        //             $("#question_option4").val("");
-        //             $("#question_correct_option").val("");
-        //             $("#question_tag").val("");
-        //             $("#question_answer_detail").val("");
-        //             alert(data);
-        //             // show_Question();
-        //         }
-        //     });
         }
         else{
             alert("Fill the required inputs");
