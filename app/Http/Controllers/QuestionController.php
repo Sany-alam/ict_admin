@@ -74,4 +74,15 @@ class QuestionController extends Controller
 
         return $data;
     }
+
+
+    public function destroy($id)
+    {
+        if (Question::where('id',$id)->delete()) {
+            return  "Successfully deleted";
+        }
+        else {
+            return "Something went wrong";
+        }
+    }
 }

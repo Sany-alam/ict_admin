@@ -38,7 +38,7 @@ $(function (){
                 $("#question_option3").val() === $("#question_correct_option").val() ||
                 $("#question_option4").val() === $("#question_correct_option").val()
             ){
-                var board_list = [];            
+                var board_list = [];
                 $('input[name^=question_board]').each(function(){
                     board_list.push($(this).val());
                 });
@@ -351,6 +351,22 @@ function Delete_Topic(id) {
         success:function(){
             alert("Successfully deleted");
             show_topics();
+        }
+    })
+}
+
+
+// delete question
+function delete_question(id) {
+    $.ajax({
+        processData:false,
+        contentType:false,
+        type:"get",
+        url:"DeleteQuestion/"+id+"",
+        success:function(data){
+            alert(data);
+            // All_show_functions();
+            show_question();
         }
     })
 }

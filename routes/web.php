@@ -20,6 +20,7 @@ Route::get('/', function () {
 // question controller routes
 Route::post('AddQuestion','QuestionController@create');
 Route::get('ShowQuestion','QuestionController@show');
+Route::get('DeleteQuestion/{id}','QuestionController@destroy');
 
 // chapter controllers route
 Route::post('AddChapter','ChapterController@Add_Chapter');
