@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::post('AddQuestion','QuestionController@create');
 Route::get('ShowQuestion','QuestionController@show');
 Route::get('DeleteQuestion/{id}','QuestionController@destroy');
+Route::get('ViewQuestion/{id}','QuestionController@view');
+Route::get('EditQuestion/{id}','QuestionController@edit');
+Route::post('UpdateQuestion','QuestionController@update');
 
 // chapter controllers route
 Route::post('AddChapter','ChapterController@Add_Chapter');

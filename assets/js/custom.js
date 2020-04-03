@@ -111,7 +111,7 @@ $(function (){
                 url:"AddChapter",
                 success:function(data) {
                     $("#ChapterName").val("");
-                    alert(data);
+                    // alert(data);
                     show_chapter_list();
                 }
             });
@@ -121,7 +121,7 @@ $(function (){
         }
     });
 
-
+    // adding topic
     $("#AddTopics").click(function (){
         if ($("#Topic-name").val().length !== 0 && $("#Topic-chapter").val().length) {
             var formdata = new FormData();
@@ -136,7 +136,7 @@ $(function (){
                 success:function(data) {
                     $("#Topic-name").val("");
                     $("#Topic-chapter").val("");
-                    alert(data);
+                    // alert(data);
                     show_topics();
                 }
             });
@@ -146,7 +146,7 @@ $(function (){
         }
     });
 
-
+    // adding board
     $("#AddBoard").click(function (){
         if ($("#board_name").val().length !== 0 && $("#board_year").val().length) {
             var formdata = new FormData();
@@ -161,7 +161,7 @@ $(function (){
                 success:function(data) {
                     $("#board_name").val("");
                     $("#board_year").val("");
-                    alert(data);
+                    // alert(data);
                     show_board();
                 }
             });
@@ -173,6 +173,56 @@ $(function (){
 
 
     // update functions
+
+    // update question
+    $("#UpdateQuestion").click(function() {
+        if ($("#Edit_question_hidden_id").val().length !== 0 &&
+        $("#Edit_Topic").val().length !== 0 &&
+        $("#Edit_Option1").val().length !== 0 &&
+        $("#Edit_Option2").val().length !== 0 &&
+        $("#Edit_Option3").val().length !== 0 &&
+        $("#Edit_Option4").val().length !== 0 &&
+        $("#Edit_Correct_Option").val().length !== 0) {
+            if (
+                $("#Edit_Option1").val() === $("#Edit_Correct_Option").val() ||
+                $("#Edit_Option2").val() === $("#Edit_Correct_Option").val() ||
+                $("#Edit_Option3").val() === $("#Edit_Correct_Option").val() ||
+                $("#Edit_Option4").val() === $("#Edit_Correct_Option").val()
+            ) {
+        var formdata = new FormData();
+            formdata.append('id',$("#Edit_question_hidden_id").val());
+            formdata.append('topic_id',$("#Edit_Topic").val());
+            formdata.append('question',$("#Edit_Question").val());
+            formdata.append('option1',$("#Edit_Option1").val());
+            formdata.append('option2',$("#Edit_Option2").val());
+            formdata.append('option3',$("#Edit_Option3").val());
+            formdata.append('option4',$("#Edit_Option4").val());
+            formdata.append('correct_option',$("#Edit_Correct_Option").val());
+            formdata.append('details',$("#Edit_Detail").val());
+            formdata.append('board_id',$("#Edit_Board").val());
+            formdata.append('tag',$("#Edit_Tag").val());
+            $.ajax({
+                processData:false,
+                contentType:false,
+                data:formdata,
+                type:"post",
+                url:"UpdateQuestion",
+                success:function(data) {
+                    $("#EditQuestionModal").modal('hide');
+                    Show_Question();
+                }
+            });
+
+        }
+        else{
+            alert("Correct option missmathed!");
+        }
+        }
+        else{
+            $("#EditQuestionModal").modal('hide');
+            alert("Riquired field was empty, Not updated!");
+        }
+    });
 
     // cahapter update
     $("#UpdateChapterName").click(function() {
@@ -190,7 +240,7 @@ $(function (){
                 url:"UpdateChapter",
                 success:function(data) {
                     $("#EditChapterNameModal").modal('hide');
-                    alert(data);
+                    // alert(data);
                     show_chapter_list();
                 }
             });
@@ -217,7 +267,7 @@ $(function (){
                 url:"UpdateTopic",
                 success:function(data) {
                     $("#EditTopicModal").modal('hide');
-                    alert(data);
+                    // alert(data);
                     show_topics();
                 }
             });
@@ -241,8 +291,31 @@ $(function (){
 
 });  // jquery function end here
 
-
-
+// view questions by modal
+function view_question(id) {
+    $.ajax({
+        processData:false,
+        contentType:false,
+        type:"get",
+        url:"ViewQuestion/"+id+"",
+        success:function(data){
+            all = JSON.parse(data);
+            // $("#View_Chapter").val(all.topic.chapter.chapter_name);
+            $("#View_id").html(all.id);
+            $("#View_Topic").val(all.topic.topic_name);
+            $("#View_Question").val(all.question);
+            $("#View_Option1").val(all.option1);
+            $("#View_Option2").val(all.option2);
+            $("#View_Option3").val(all.option3);
+            $("#View_Option4").val(all.option4);
+            $("#View_Correct_Option").val(all.correct_option);
+            $("#View_Detail").val(all.details);
+            $("#View_Board").val(all.board_list.board_name+" "+all.board_list.year);
+            $("#View_Tag").val(all.tag);
+            $("#QuestionModal").modal('show');
+        }
+    })
+}
 
 // show question
 function Show_Question(){
@@ -269,6 +342,7 @@ function show_board() {
             all = JSON.parse(data);
             $("#BoardListDelete").html(all.delete);
             $("#question_board").html(all.board_list);
+            $("#Edit_Board").html(all.board_list);
         }
     })
 }
@@ -286,6 +360,7 @@ function show_topics() {
             $("#EditTopicList").html(all.edit);
             $("#DeleteTopicList").html(all.delete);
             $("#question_topic").html(all.topic_list);
+            $("#Edit_Topic").html(all.topic_list);
         }
     })
 }
@@ -316,7 +391,7 @@ function Delete_Board(id) {
         type:"get",
         url:"DeleteBoard/"+id+"",
         success:function(data){
-            alert("Successfully deleted");
+            // alert("Successfully deleted");
             show_board();
         }
     })
@@ -330,7 +405,7 @@ function Delete_Chapter(id) {
         type:"get",
         url:"DeleteChapter/"+id+"",
         success:function(data){
-            alert("Successfully deleted");
+            // alert("Successfully deleted");
             show_chapter_list();
         }
     })
@@ -359,9 +434,7 @@ function delete_question(id) {
         type:"get",
         url:"DeleteQuestion/"+id+"",
         success:function(data){
-            // alert(data);
-            // All_show_functions();
-            show_question();
+            Show_Question();
         }
     })
 }
@@ -397,6 +470,33 @@ function Edit_Topic(id) {
             $("#EditTopicChapter").val(all.chapter_id);
             $("#HiddenEditTopicId").val(all.id);
             $("#EditTopicModal").modal('show');
+        }
+    })
+}
+
+
+// edit question
+function edit_question(id) {
+    $.ajax({
+        processData:false,
+        contentType:false,
+        type:"get",
+        url:"EditQuestion/"+id+"",
+        success:function(data){
+            all = JSON.parse(data);
+            // $("#Edit_Chapter").val(all.topic.chapter.chapter_name);
+            $("#Edit_question_hidden_id").val(all.id);
+            $("#Edit_Topic").val(all.topic_id);
+            $("#Edit_Question").val(all.question);
+            $("#Edit_Option1").val(all.option1);
+            $("#Edit_Option2").val(all.option2);
+            $("#Edit_Option3").val(all.option3);
+            $("#Edit_Option4").val(all.option4);
+            $("#Edit_Correct_Option").val(all.correct_option);
+            $("#Edit_Detail").val(all.details);
+            $("#Edit_Board").val(all.board_id);
+            $("#Edit_Tag").val(all.tag);
+            $("#EditQuestionModal").modal('show');
         }
     })
 }

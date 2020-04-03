@@ -71,4 +71,22 @@ class QuestionController extends Controller
             return "Something went wrong";
         }
     }
+
+
+    public function view($id)
+    {
+        return json_encode(Question::where('id',$id)->with('topic','board_list')->first());
+    }
+
+
+    public function edit($id)
+    {
+        return json_encode(Question::where('id',$id)->with('topic','board_list')->first());
+    }
+
+
+    public function update(Request $request)
+    {
+        Question::where('id',$request->id)->update($request->all());
+    }
 }

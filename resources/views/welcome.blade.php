@@ -181,7 +181,7 @@
     </div>
 </div>
     {{-- modals start here --}}
-    {{-- chapter name editation modal --}}
+    {{-- chapter name editation start modal --}}
     <div id="EditChapterNameModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -205,8 +205,8 @@
             </div>
         </div>
     </div>
-    {{-- chapter name editation modal --}}
-    {{-- Topic editation modal --}}
+    {{-- chapter name editation end modal --}}
+    {{-- Topic editation start modal --}}
     <div id="EditTopicModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -234,7 +234,136 @@
             </div>
         </div>
     </div>
-    {{-- Topic editation modal --}}
+    {{-- Topic editation end modal --}}
+    {{-- show question start modal --}}
+    <div class="modal fade" id="QuestionModal">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Question no <span id="View_id"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="View_Chapter">Chapter</label>
+                        <input type="text" class="form-control" id="View_Chapter" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Topic">Topic</label>
+                        <input type="text" class="form-control" id="View_Topic" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Question">Question</label>
+                        <input type="text" class="form-control" id="View_Question" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Option1">Option 1</label>
+                        <input type="text" class="form-control" id="View_Option1" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Option2">Option 2</label>
+                        <input type="text" class="form-control" id="View_Option2" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Option3">Option 3</label>
+                        <input type="text" class="form-control" id="View_Option3" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Option4">Option 4</label>
+                        <input type="text" class="form-control" id="View_Option4" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Correct_Option">Correct Option</label>
+                        <input type="text" class="form-control" id="View_Correct_Option" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Detail">Detail</label>
+                        <input type="text" class="form-control" id="View_Detail" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Board">Board</label>
+                        <input type="text" class="form-control" id="View_Board" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="View_Tag">Tag</label>
+                        <input type="text" class="form-control" id="View_Tag" disabled>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- show question end modal --}}
+    {{-- edit question start modal --}}
+    <div class="modal fade" id="EditQuestionModal">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Update Question</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="Edit_question_hidden_id">
+                    <div class="form-group">
+                        <label for="Edit_Chapter">Chapter :</label>
+                        <input type="text" class="form-control" id="Edit_Chapter">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Topic">Topic :</label>
+                        <select class="form-control" id="Edit_Topic"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Question">Question :</label>
+                        <input type="text" class="form-control" id="Edit_Question">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Option1">Option 1 :</label>
+                        <input type="text" class="form-control" id="Edit_Option1">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Option2">Option 2 :</label>
+                        <input type="text" class="form-control" id="Edit_Option2">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Option3">Option 3 :</label>
+                        <input type="text" class="form-control" id="Edit_Option3">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Option4">Option 4 :</label>
+                        <input type="text" class="form-control" id="Edit_Option4">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Correct_Option">Correct Option</label>
+                        <input type="text" class="form-control" id="Edit_Correct_Option">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Detail">Detail :</label>
+                        <input type="text" class="form-control" id="Edit_Detail">
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Board">Board :</label>
+                        <select class="form-control" id="Edit_Board"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Edit_Tag">Tag :</label>
+                        <input type="text" class="form-control" id="Edit_Tag">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="UpdateQuestion" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- edit question end modal --}}
     {{-- modal ends here --}}
 
     {{-- custom js --}}
