@@ -5,7 +5,7 @@ $(function (){
         }
     }); // csrf solution
     $(".yearpicker").yearpicker(); // year picker for add board
-
+    $('.select2').select2();
 
     // add question - board list js
     $('#addMore').on('click', function() {
@@ -39,7 +39,7 @@ $(function (){
                 $("#question_option4").val() === $("#question_correct_option").val()
             ){
                 var board_list = [];
-                $('input[name^=question_board]').each(function(){
+                $('#question_board').each(function(){
                     board_list.push($(this).val());
                 });
 
@@ -63,6 +63,7 @@ $(function (){
                     success:function(data) {
                         $("#question_topic").val("");
                         $("#question_board").val("");
+                        $("#question_board").trigger("change");
                         $("#question").val("");
                         $("#question_option1").val("");
                         $("#question_option2").val("");
@@ -71,13 +72,11 @@ $(function (){
                         $("#question_correct_option").val("");
                         $("#question_tag").val("");
                         $("#question_answer_detail").val("");
-                        alert(data);
                         Show_Question();
                     }
                 });
-
                 // alert($("#question_topic").val()+" "+
-                // $("#question_board").val()+" "+
+                // board_list+" "+
                 // $("#question").val()+" "+
                 // $("#question_option1").val()+" "+
                 // $("#question_option2").val()+" "+
@@ -231,14 +230,7 @@ $(function (){
 
     // update functions
 
-    // show functions
-    All_show_functions();
-
-});  // jquery function end here
-
-
-function All_show_functions() {
-    // show chapter
+    // show functions// show chapter
     show_chapter_list();
     // show topic
     show_topics();
@@ -246,7 +238,10 @@ function All_show_functions() {
     show_board();
     // show question
     Show_Question();
-}
+
+});  // jquery function end here
+
+
 
 
 // show question
@@ -349,7 +344,7 @@ function Delete_Topic(id) {
         type:"get",
         url:"DeleteTopic/"+id+"",
         success:function(){
-            alert("Successfully deleted");
+            // alert("Successfully deleted");
             show_topics();
         }
     })
@@ -364,7 +359,7 @@ function delete_question(id) {
         type:"get",
         url:"DeleteQuestion/"+id+"",
         success:function(data){
-            alert(data);
+            // alert(data);
             // All_show_functions();
             show_question();
         }
@@ -405,3 +400,48 @@ function Edit_Topic(id) {
         }
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ajaxStart(function() {
+    swal({
+        //  title: "Loading...",
+        //  text: "Please wait",
+        icon: "assets/images/loading-gif-png-5.gif",
+        button: false,
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+    });
+    $(".swal-modal").css('background-color', 'rgba(0,0,0,0.0)');
+    $(".swal-overlay").css('background-color', 'rgba(0,0,0,0.8)');
+    $('.swal-icon').css({
+        "height":"180px",
+    });
+});
+$(document).ajaxStop(function() {
+    swal.close();
+});
+
+
+
+
+
+
+
+

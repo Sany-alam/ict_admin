@@ -9,6 +9,7 @@
     {{-- page css --}}
     <link rel="stylesheet" href="{{ asset('assets') }}\vendors\datatables\dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets') }}\vendors\yearpicker\yearpicker.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/vendors/select2/select2.css">
 
     {{-- required css --}}
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app.min.css">
@@ -29,8 +30,9 @@
     <script src="{{ asset('assets') }}/js/app.min.js"></script>
 
     {{-- page js --}}<!-- page js -->
+    <script src="{{ asset('assets') }}/vendors/select2/select2.min.js"></script>
+    <script src="{{ asset('assets') }}/js/sweetalert.js"></script>
     <script src="{{ asset('assets') }}/vendors/yearpicker/yearpicker.js"></script>
-
 
     <title>ICT - Add Questions</title>
 </head>
@@ -119,11 +121,12 @@
                     <select id="question_topic" class="form-control"></select>
                 </div>
                 <div class="col" id="board_field">
-                    <label for="question_board">Select Board : (Optional) <a id="addMore" href="javascript:void(0)"><i class="suffix-icon anticon anticon-plus"></i></a></label>
-                    <div class="input-affix boards">
-                        <select name="question_board[]" id="question_board" class="form-control"></select>
-                        <a href="javascript:void(0)"><i class="suffix-icon anticon anticon-delete remove"></i></a>
-                    </div>
+                    <label for="question_board">Select Board : (Optional)</label>
+                    {{-- <a id="addMore" href="javascript:void(0)"><i class="suffix-icon anticon anticon-plus"></i></a> --}}
+                    {{-- <div class="input-affix boards"> --}}
+                        <select id="question_board" class="select2" multiple></select>
+                        {{-- <a href="javascript:void(0)"><i class="suffix-icon anticon anticon-delete remove"></i></a> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
             <div class="form-row mb-3">
