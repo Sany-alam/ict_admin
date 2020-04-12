@@ -158,7 +158,14 @@
             <div class="form-row mb-3">
                 <div class="col">
                     <label for="question_correct_option">Enter Correct Option :</label>
-                    <input id="question_correct_option" type="text" class="form-control" placeholder="Copy and paste the correct option">
+                    <!-- <input id="question_correct_option" type="text" class="form-control" placeholder="Copy and paste tthe correct opion"> -->
+                    <select id="question_correct_option" class="form-control">
+                        <option value="">Select correct opion</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
                 <div class="col">
                     <label for="question_tag">Enter Tag : (Optional)</label>

@@ -21,7 +21,7 @@ class BoardListController extends Controller
     {
         $query = board_list::all();
         $array = array();
-        $board_list = '';
+        $board_list = '<option value="">Select Board</option>';
         $delete = '<button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Delete Board <i class="fa fa-arrow-down"></i></button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       ';
